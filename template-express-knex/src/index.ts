@@ -3,6 +3,7 @@ import knex from "knex";
 import cors from "cors";
 import dotenv from "dotenv";
 import { AddressInfo } from "net";
+import { insertTeacherInMission } from "./endpoints/insertTeacherInMission";
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.use(express.json());
 app.use(cors())
 
 // endpoints aqui
+app.post('/mission/addTeacher', insertTeacherInMission)
 
 const server = app.listen(process.env.PORT || 3003, () => {
    if (server) {
