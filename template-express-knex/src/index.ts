@@ -1,9 +1,11 @@
-import express, { Express } from "express";
+import express, { Express, Request, Response } from "express";
 import knex from "knex";
 import cors from "cors";
 import dotenv from "dotenv";
 import { AddressInfo } from "net";
 import { insertTeacherInMission } from "./endpoints/insertTeacherInMission";
+import { createStudent } from "./endpoints/newStudent";
+import {studentInMission} from "./endpoints/insertStudentInMission"
 
 dotenv.config();
 
@@ -24,6 +26,24 @@ app.use(cors())
 
 // endpoints aqui
 app.post('/mission/addTeacher', insertTeacherInMission)
+app.post('/createstudent',createStudent)
+app.post('/studenttomission',studentInMission)
+
+//  async function addStudentMission(req:Request, res:Response):Promise<void>{
+//    try {
+//     if(!req.body.missionId){throw new Error("Favor indicar o id da turma")}
+//     if(!req.body.studentId){throw new Error("Favor indicar o id do aluno")}
+//      await connection.raw(`
+//      update student
+//      set mission_id = ${req.body.missionId}
+//      where id = ${req.body.studentId}
+//      `)
+//      res.status(200).send("Estudante adicionado a turma com sucesso")
+//    } catch (error) {
+      
+//      res.status(400).send(error.message)
+//    }
+//  }
 
 const server = app.listen(process.env.PORT || 3003, () => {
    if (server) {

@@ -4,7 +4,7 @@
    "description": "",
    "main": "index.js",
    "scripts": {
-      "start": "tsc && node ./build/index.js",
+      "start": "tsc && node ./build/src/index.js",
       "dev": "ts-node-dev ./src/index.ts",
       "build": "tsc"
    },
@@ -14,7 +14,7 @@
       "cors": "^2.8.5",
       "dotenv": "^8.2.0",
       "express": "4.17.0",
-      "knex": "^0.21.1",
+      "knex": "^0.21.16",
       "mysql": "^2.18.1"
    },
    "devDependencies": {
