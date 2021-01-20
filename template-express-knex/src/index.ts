@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { AddressInfo } from "net";
 import { insertTeacherInMission } from "./endpoints/insertTeacherInMission";
+import { getStudentAge } from "./endpoints/getStudentAge";
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.use(express.json());
 app.use(cors())
 
 // endpoints aqui
+app.get('/student/age/:id', getStudentAge)
 app.post('/mission/addTeacher', insertTeacherInMission)
 
 const server = app.listen(process.env.PORT || 3003, () => {
