@@ -24,26 +24,10 @@ const app: Express = express();
 app.use(express.json());
 app.use(cors())
 
-// endpoints aqui
+
 app.post('/mission/addTeacher', insertTeacherInMission)
 app.post('/createstudent',createStudent)
 app.post('/studenttomission',studentInMission)
-
-//  async function addStudentMission(req:Request, res:Response):Promise<void>{
-//    try {
-//     if(!req.body.missionId){throw new Error("Favor indicar o id da turma")}
-//     if(!req.body.studentId){throw new Error("Favor indicar o id do aluno")}
-//      await connection.raw(`
-//      update student
-//      set mission_id = ${req.body.missionId}
-//      where id = ${req.body.studentId}
-//      `)
-//      res.status(200).send("Estudante adicionado a turma com sucesso")
-//    } catch (error) {
-      
-//      res.status(400).send(error.message)
-//    }
-//  }
 
 const server = app.listen(process.env.PORT || 3003, () => {
    if (server) {
