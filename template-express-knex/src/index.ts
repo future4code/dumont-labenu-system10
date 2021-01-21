@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import { AddressInfo } from "net";
 import { insertTeacherInMission } from "./endpoints/insertTeacherInMission";
 import { getStudentAge } from "./endpoints/getStudentAge";
+import { getMissionStudents } from "./endpoints/getMissionStudents";
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.use(cors())
 
 // endpoints aqui
 app.get('/student/age/:id', getStudentAge)
+app.get('/mission/students/:id', getMissionStudents)
 app.post('/mission/addTeacher', insertTeacherInMission)
 
 const server = app.listen(process.env.PORT || 3003, () => {
