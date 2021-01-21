@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import { AddressInfo } from "net";
 import { insertTeacherInMission } from "./endpoints/insertTeacherInMission";
 import { getStudentAge } from "./endpoints/getStudentAge";
+import { removeTeacherFromMission } from "./endpoints/removeTeacherFromMission";
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ app.use(cors())
 // endpoints aqui
 app.get('/student/age/:id', getStudentAge)
 app.post('/mission/addTeacher', insertTeacherInMission)
+app.post('/mission/removeTeacher', removeTeacherFromMission)
 
 const server = app.listen(process.env.PORT || 3003, () => {
    if (server) {
