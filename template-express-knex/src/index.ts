@@ -1,11 +1,14 @@
-import express, { Express } from "express";
+import express, { Express, Request, Response } from "express";
 import knex from "knex";
 import cors from "cors";
 import dotenv from "dotenv";
 import { AddressInfo } from "net";
 import { insertTeacherInMission } from "./endpoints/insertTeacherInMission";
+import { createStudent } from "./endpoints/newStudent";
+import {studentInMission} from "./endpoints/insertStudentInMission"
 import { getStudentAge } from "./endpoints/getStudentAge";
 import { getMissionTeachers } from "./endpoints/getMIssionTeachers";
+
 
 dotenv.config();
 
@@ -24,10 +27,11 @@ const app: Express = express();
 app.use(express.json());
 app.use(cors())
 
-// endpoints aqui
 app.get('/student/age/:id', getStudentAge)
 app.get('/mission/teachers/:id', getMissionTeachers)
 app.post('/mission/addTeacher', insertTeacherInMission)
+app.post('/createstudent',createStudent)
+app.post('/studenttomission',studentInMission)
 
 const server = app.listen(process.env.PORT || 3003, () => {
    if (server) {
