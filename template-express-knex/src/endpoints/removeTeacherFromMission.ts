@@ -7,12 +7,12 @@ export const removeTeacherFromMission = async (req: Request, res: Response) => {
 
     if(!id) {
       res.statusCode = 422
-      throw new Error ("ID do docente e ID da turma são obrigatorios!")
+      throw new Error ("O ID da turma é obrigatorio!")
     }
 
     if(!Number(id)) {
       res.statusCode = 422
-      throw new Error ("ID do docente ou ID da turma inválidos!")
+      throw new Error ("ID da turma inválido!")
     }
 
     await updateTeacher(Number(id), null)
