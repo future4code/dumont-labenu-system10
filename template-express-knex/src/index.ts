@@ -7,6 +7,7 @@ import { insertTeacherInMission } from "./endpoints/insertTeacherInMission";
 import { createStudent } from "./endpoints/newStudent";
 import {studentInMission} from "./endpoints/insertStudentInMission"
 import { getStudentAge } from "./endpoints/getStudentAge";
+import { getMissionTeachers } from "./endpoints/getMIssionTeachers";
 
 
 dotenv.config();
@@ -27,7 +28,7 @@ app.use(express.json());
 app.use(cors())
 
 app.get('/student/age/:id', getStudentAge)
-
+app.get('/mission/teachers/:id', getMissionTeachers)
 app.post('/mission/addTeacher', insertTeacherInMission)
 app.post('/createstudent',createStudent)
 app.post('/studenttomission',studentInMission)
