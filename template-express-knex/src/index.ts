@@ -7,6 +7,7 @@ import { insertTeacherInMission } from "./endpoints/insertTeacherInMission";
 import { createStudent } from "./endpoints/newStudent";
 import {studentInMission} from "./endpoints/insertStudentInMission"
 import { getStudentAge } from "./endpoints/getStudentAge";
+import { removeTeacherFromMission } from "./endpoints/removeTeacherFromMission";
 import { getMissionStudents } from "./endpoints/getMissionStudents";
 import { getMissionTeachers } from "./endpoints/getMIssionTeachers";
 
@@ -31,6 +32,7 @@ app.get('/student/age/:id', getStudentAge)
 app.get('/mission/students/:id', getMissionStudents)
 app.get('/mission/teachers/:id', getMissionTeachers)
 app.post('/mission/addTeacher', insertTeacherInMission)
+app.post('/mission/removeTeacher', removeTeacherFromMission)
 app.post('/createstudent',createStudent)
 app.post('/studenttomission',studentInMission)
 
