@@ -10,10 +10,15 @@ import {deleteStudentFunction} from "./endpoints/deleteStudent"
 import { removeStudentMissionFunction } from "./endpoints/removeStudentMission";
 import { changeStudentMissionFunction } from "./endpoints/changeStudentMission";
 import { getStudentAge } from "./endpoints/getStudentAge";
+import { docente } from "./endpoints/postDocente";
+import { turma } from "./endpoints/postTurma";
+import {createDocente} from "./data/createDocent"
+import { createTurma } from "./data/createTurma";
 import { removeTeacherFromMission } from "./endpoints/removeTeacherFromMission";
 import { getMissionStudents } from "./endpoints/getMissionStudents";
 import { getMissionTeachers } from "./endpoints/getMIssionTeachers";
 import { getStudentSameHobby } from "./endpoints/getStudentSameHobby";
+
 
 dotenv.config();
 
@@ -31,6 +36,39 @@ export const connection = knex({
 const app: Express = express();
 app.use(express.json());
 app.use(cors())
+
+// endpoints aqui
+//CRIAR DOCENTE
+app.post("/docente",async (
+   req: Request, 
+   res: Response
+   ):Promise<void> =>{ 
+const newDocente: docente={
+   id:Date.now(),
+   name: req.body.name as string,
+email:req.body.email as string,
+birthdate :req.body.birthdate as string,
+}
+createDocente(newDocente) 
+
+res.status(200).send( ` ${newDocente.name}  criado com sucesso`)
+   })
+
+//CRIAR TURMA
+app.post("/turma", async (
+ req: Request,
+    res: Response
+    ):Promise<void> =>{ 
+      const newTurma: turma={
+         id:Date.now(),
+         name:req.body.name as string,
+         startdate:req.body.startdate as string,
+         enddate:req.body.enddate as string, 
+         module:req.body.module 
+   }
+   createTurma(newTurma) 
+   res.status(200).send( ` ${newTurma.name}  criado com sucesso`)
+      })
 
 app.get('/student/age/:id', getStudentAge)
 app.get('/student/hobby/:id', getStudentSameHobby)
