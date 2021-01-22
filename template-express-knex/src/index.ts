@@ -1,14 +1,24 @@
-import express, { Express,Request,Response } from "express";
+import express, { Express, Request, Response } from "express";
 import knex from "knex";
 import cors from "cors";
 import dotenv from "dotenv";
 import { AddressInfo } from "net";
 import { insertTeacherInMission } from "./endpoints/insertTeacherInMission";
+import { createStudent } from "./endpoints/newStudent";
+import {studentInMission} from "./endpoints/insertStudentInMission"
+import {deleteStudentFunction} from "./endpoints/deleteStudent"
+import { removeStudentMissionFunction } from "./endpoints/removeStudentMission";
+import { changeStudentMissionFunction } from "./endpoints/changeStudentMission";
 import { getStudentAge } from "./endpoints/getStudentAge";
 import { docente } from "./endpoints/postDocente";
 import { turma } from "./endpoints/postTurma";
 import {createDocente} from "./data/createDocent"
 import { createTurma } from "./data/createTurma";
+import { removeTeacherFromMission } from "./endpoints/removeTeacherFromMission";
+import { getMissionStudents } from "./endpoints/getMissionStudents";
+import { getMissionTeachers } from "./endpoints/getMIssionTeachers";
+import { getStudentSameHobby } from "./endpoints/getStudentSameHobby";
+
 
 dotenv.config();
 
@@ -60,9 +70,17 @@ app.post("/turma", async (
    res.status(200).send( ` ${newTurma.name}  criado com sucesso`)
       })
 
-
 app.get('/student/age/:id', getStudentAge)
+app.get('/student/hobby/:id', getStudentSameHobby)
+app.get('/mission/students/:id', getMissionStudents)
+app.get('/mission/teachers/:id', getMissionTeachers)
 app.post('/mission/addTeacher', insertTeacherInMission)
+app.post('/mission/removeTeacher', removeTeacherFromMission)
+app.post('/createstudent',createStudent)
+app.post('/studenttomission',studentInMission)
+app.delete('/deletestudent',deleteStudentFunction)
+app.delete('/removemission',removeStudentMissionFunction)
+app.put('/changemission',changeStudentMissionFunction)
 
 const server = app.listen(process.env.PORT || 3003, () => {
    if (server) {
