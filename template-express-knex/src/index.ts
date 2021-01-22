@@ -6,6 +6,9 @@ import { AddressInfo } from "net";
 import { insertTeacherInMission } from "./endpoints/insertTeacherInMission";
 import { createStudent } from "./endpoints/newStudent";
 import {studentInMission} from "./endpoints/insertStudentInMission"
+import {deleteStudentFunction} from "./endpoints/deleteStudent"
+import { removeStudentMissionFunction } from "./endpoints/removeStudentMission";
+import { changeStudentMissionFunction } from "./endpoints/changeStudentMission";
 
 dotenv.config();
 
@@ -28,6 +31,9 @@ app.use(cors())
 app.post('/mission/addTeacher', insertTeacherInMission)
 app.post('/createstudent',createStudent)
 app.post('/studenttomission',studentInMission)
+app.delete('/deletestudent',deleteStudentFunction)
+app.delete('/removemission',removeStudentMissionFunction)
+app.put('/changemission',changeStudentMissionFunction)
 
 const server = app.listen(process.env.PORT || 3003, () => {
    if (server) {
