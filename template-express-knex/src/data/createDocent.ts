@@ -1,6 +1,7 @@
 import { connection } from "..";
+import { docente } from "../endpoints/postDocente";
 
-export const updateDocente = async (id: number, name: string,email:string,birthdate:string): Promise<any> => {
+export const createDocente = async (docente : docente): Promise<any> => {
   await connection("teacher")
- .insert({id:id,name:name,email:email,birthdate:birthdate })
+ .insert(docente)
 }
