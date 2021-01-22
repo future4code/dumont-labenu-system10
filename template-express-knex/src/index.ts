@@ -6,6 +6,9 @@ import { AddressInfo } from "net";
 import { insertTeacherInMission } from "./endpoints/insertTeacherInMission";
 import { createStudent } from "./endpoints/newStudent";
 import {studentInMission} from "./endpoints/insertStudentInMission"
+import {deleteStudentFunction} from "./endpoints/deleteStudent"
+import { removeStudentMissionFunction } from "./endpoints/removeStudentMission";
+import { changeStudentMissionFunction } from "./endpoints/changeStudentMission";
 import { getStudentAge } from "./endpoints/getStudentAge";
 import { removeTeacherFromMission } from "./endpoints/removeTeacherFromMission";
 import { getMissionStudents } from "./endpoints/getMissionStudents";
@@ -37,6 +40,9 @@ app.post('/mission/addTeacher', insertTeacherInMission)
 app.post('/mission/removeTeacher', removeTeacherFromMission)
 app.post('/createstudent',createStudent)
 app.post('/studenttomission',studentInMission)
+app.delete('/deletestudent',deleteStudentFunction)
+app.delete('/removemission',removeStudentMissionFunction)
+app.put('/changemission',changeStudentMissionFunction)
 
 const server = app.listen(process.env.PORT || 3003, () => {
    if (server) {
