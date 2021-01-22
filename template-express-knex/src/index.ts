@@ -10,6 +10,7 @@ import { getStudentAge } from "./endpoints/getStudentAge";
 import { removeTeacherFromMission } from "./endpoints/removeTeacherFromMission";
 import { getMissionStudents } from "./endpoints/getMissionStudents";
 import { getMissionTeachers } from "./endpoints/getMIssionTeachers";
+import { getStudentSameHobby } from "./endpoints/getStudentSameHobby";
 
 dotenv.config();
 
@@ -29,6 +30,7 @@ app.use(express.json());
 app.use(cors())
 
 app.get('/student/age/:id', getStudentAge)
+app.get('/student/hobby/:id', getStudentSameHobby)
 app.get('/mission/students/:id', getMissionStudents)
 app.get('/mission/teachers/:id', getMissionTeachers)
 app.post('/mission/addTeacher', insertTeacherInMission)
