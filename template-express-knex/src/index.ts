@@ -9,6 +9,11 @@ import {studentInMission} from "./endpoints/insertStudentInMission"
 import {deleteStudentFunction} from "./endpoints/deleteStudent"
 import { removeStudentMissionFunction } from "./endpoints/removeStudentMission";
 import { changeStudentMissionFunction } from "./endpoints/changeStudentMission";
+import { getStudentAge } from "./endpoints/getStudentAge";
+import { removeTeacherFromMission } from "./endpoints/removeTeacherFromMission";
+import { getMissionStudents } from "./endpoints/getMissionStudents";
+import { getMissionTeachers } from "./endpoints/getMIssionTeachers";
+import { getStudentSameHobby } from "./endpoints/getStudentSameHobby";
 
 dotenv.config();
 
@@ -27,8 +32,12 @@ const app: Express = express();
 app.use(express.json());
 app.use(cors())
 
-
+app.get('/student/age/:id', getStudentAge)
+app.get('/student/hobby/:id', getStudentSameHobby)
+app.get('/mission/students/:id', getMissionStudents)
+app.get('/mission/teachers/:id', getMissionTeachers)
 app.post('/mission/addTeacher', insertTeacherInMission)
+app.post('/mission/removeTeacher', removeTeacherFromMission)
 app.post('/createstudent',createStudent)
 app.post('/studenttomission',studentInMission)
 app.delete('/deletestudent',deleteStudentFunction)
